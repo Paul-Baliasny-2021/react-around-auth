@@ -1,0 +1,14 @@
+.place__like {
+    width: 21px;
+    height: 19px;
+    background: url(../../../images/VectorHeart.svg) transparent no-repeat;
+    border: none;
+    padding: 0;
+    opacity: 1;
+    transition: opacity .3s linear;
+}
+
+.place__like:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}

@@ -1,0 +1,18 @@
+.popup__input_theme_error {
+    width: 99%;
+    margin-top: 30px;
+    margin-bottom: 0;
+    padding-bottom: 8px;
+    border: none;
+    border-bottom: solid 1px #FF0000;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+@media screen and (max-width: 720px) {
+    .popup__input_theme_error {
+        max-width: 238px;
+        margin-left: 22px;
+    }
+}

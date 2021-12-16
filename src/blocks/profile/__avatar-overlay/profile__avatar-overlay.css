@@ -1,0 +1,21 @@
+.profile__avatar-overlay {
+    background-color: rgba(0, 0, 0, .8);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    box-sizing: border-box;
+    opacity: 0;
+    /* transition: opacity .3s linear; */
+    z-index: 2;
+    transition: .5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.profile__avatar-overlay:hover {
+    opacity: 1;
+}

@@ -1,0 +1,9 @@
+.register__input {
+    margin-top: 0;
+    margin-bottom: 57px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-bottom: 2px solid #CCCCCC;
+    width: 100%;
+};

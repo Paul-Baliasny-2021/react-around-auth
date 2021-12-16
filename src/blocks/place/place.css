@@ -1,0 +1,13 @@
+.place {
+    min-height: 361px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: black;
+    background-color: white;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    position: relative;
+}

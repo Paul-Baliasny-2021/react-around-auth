@@ -1,0 +1,24 @@
+.places {
+    color:white;
+    max-width: 68.75%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    row-gap: 21px;
+    column-gap: 17px;
+   }
+
+@media screen and (max-width: 960px) {
+    .places {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .places {
+        max-width: 88.125%;
+        grid-template-columns: 1fr;
+        row-gap: 20px;
+    }
+}

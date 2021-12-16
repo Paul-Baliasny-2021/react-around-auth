@@ -1,0 +1,10 @@
+.popup__error-message {
+    color: #FF0000;
+}
+
+@media screen and (max-width: 720px) {
+    .popup__error-message {
+        margin-left: 22px;
+        max-width: 238px;
+    }
+}

@@ -1,0 +1,16 @@
+.register {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 auto;
+    background-color: black;
+    min-width: 880px;
+}
+
+@media screen and (max-width: 720px) {
+    .register {
+        min-width: 100%;
+        margin: 0;
+    }
+}

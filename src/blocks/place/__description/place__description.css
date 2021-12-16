@@ -1,0 +1,10 @@
+.place__description {
+    width: 86%;
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

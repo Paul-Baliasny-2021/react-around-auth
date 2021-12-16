@@ -1,0 +1,15 @@
+.header__log-button {
+    font-weight: 400;
+    color: white;
+    text-decoration: none;
+    border:none;
+    background-color: black;
+    margin-left: 24px;
+    opacity: 1;
+    transition: opacity .3s linear;
+}
+
+.header__log-button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}

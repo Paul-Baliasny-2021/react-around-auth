@@ -1,0 +1,12 @@
+.register__signin {
+    color: white;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+@media screen and (max-width: 720px) {
+    .register__signin {
+        width: 280px;
+    }
+}
