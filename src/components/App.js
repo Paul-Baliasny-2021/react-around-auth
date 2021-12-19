@@ -46,6 +46,10 @@ function App() {
                         setLoggedUserEmail(res.data.email)
                     }
                 })
+                .catch((err) => {
+                    setIsSuccessful(false);
+                    openInfoTooltip();
+                })
         }
     }, [history]);
 
@@ -112,6 +116,19 @@ function App() {
         setIsInfoTooltipOpen(false);
         setSelectedCard({});
     };
+
+    useEffect(() => {
+        const closeByEscape = (e) => {
+          if (e.key === 'Escape') {
+            closeAllPopups();
+          }
+        }
+  
+        document.addEventListener('keydown', closeByEscape)
+        
+        return () => document.removeEventListener('keydown', closeByEscape)
+    }, [])
+  
 
     function handleUpdateUser(userData) {
         setIsSaving(true)
@@ -196,7 +213,6 @@ function App() {
                             setIsSuccessful(true);
                             openInfoTooltip()
                         }} />
-                    <InfoTooltip isOpen={isInfoTooltipOpen} isSuccessful={isSuccessful} onClose={closeAllPopups} />
                 </Route>
                 <Route path='/login'>
                     <Header
@@ -215,7 +231,6 @@ function App() {
                         }
                         checkToken={checkToken}
                         handleLogin={handleLogin} />
-                    <InfoTooltip isOpen={isInfoTooltipOpen} isSuccessful={isSuccessful} onClose={closeAllPopups} />
                 </Route>
 
                 <CurrentUserContext.Provider value={currentUser}>
@@ -252,6 +267,7 @@ function App() {
                 </Route>
             </Switch>
             <Footer />
+            <InfoTooltip isOpen={isInfoTooltipOpen} isSuccessful={isSuccessful} onClose={closeAllPopups} />
         </div >
     );
 };

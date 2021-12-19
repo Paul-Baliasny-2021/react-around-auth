@@ -1,8 +1,7 @@
-const createFetchTemplate = (url, headers) =>
+export const createFetchTemplate = (url, headers) =>
     fetch(url, headers)
-        .then(res => res.ok ? res.json() : Promise.reject(res.status));
-        // .catch(err => console.log(err));
-
+        .then(res => res.ok ? res.json() : Promise.reject(`Error ${res.status}`));
+       
 class Api {
     constructor({ baseUrl, headers }) {
         this._baseUrl = baseUrl;
