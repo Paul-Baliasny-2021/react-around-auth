@@ -5,7 +5,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext'
 import Card from './Card';
 
 function Main(props) {
-    const currentUser = useContext(CurrentUserContext)
+   const currentUser = useContext(CurrentUserContext)
     return (
         <div className="main-content">
             <section className="profile">
@@ -28,18 +28,18 @@ function Main(props) {
                     <img src={plus} alt="plus" className="profile__plus" />
                 </button>
             </section>
-        
+
             <section className="places">
-                {props.cards.map((cardInfo) => (
+                {props.cards.map((data) => (
                     <Card
-                        cardData={cardInfo}
-                        key={cardInfo._id}
-                        link={cardInfo.link}
-                        name={cardInfo.name}
-                        likesCounter={cardInfo.likes.length}
-                        ownerId={cardInfo.owner._id}
-                        likes={cardInfo.likes}
-                        cardId={cardInfo._id}
+                        cardData={data}
+                        key={data._id}
+                        link={data.link}
+                        name={data.name}
+                        likesCounter={data.likes.length}
+                        ownerId={data.owner}
+                        likes={data.likes}
+                        cardId={data._id}
                         onCardClick={props.onCardClick}
                         onCardLike={props.onCardLike}
                         onCardDelete={props.onCardDelete}

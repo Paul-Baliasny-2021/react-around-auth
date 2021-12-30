@@ -59,11 +59,12 @@ class Api {
 }
 
 const api = new Api({
-    baseUrl: 'https://around.nomoreparties.co/v1/group-12',
+    baseUrl: 'http://localhost:3000',
     headers: {
-        authorization: "c1d6862e-d39d-4724-bab0-a07d7562f2a3",
-        "Content-Type": "application/json",
-    }
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+       'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    },
 });
 
 export default api;

@@ -31,6 +31,7 @@ function App() {
     const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
     const history = useHistory();
 
+
     const checkToken = useCallback(() => {
         const token = localStorage.getItem('token');
         if (!token) {
@@ -39,11 +40,13 @@ function App() {
         }
         if (token) {
             auth.checkContent(token)
-                .then((res) => {
-                    if (res) {
+                .then((currentUser) => {
+                    if (currentUser) {
                         history.push('/');
                         setIsLoggedIn(true);
-                        setLoggedUserEmail(res.data.email)
+                        setCurrentUser(currentUser.data);
+                        setLoggedUserEmail(currentUser.data.email);
+                        localStorage.setItem('currentUserId', currentUser.data._id);
                     }
                 })
                 .catch((err) => {
@@ -57,6 +60,7 @@ function App() {
         checkToken()
     }, [checkToken]);
 
+
     function openInfoTooltip() {
         setIsInfoTooltipOpen(true);
     };
@@ -66,31 +70,25 @@ function App() {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('token');
+        localStorage.clear();
         history.push('/login');
         setIsLoggedIn(false);
+        setCurrentUser({});
         closeAllPopups();
     };
 
-    useEffect(() => {
-        api.getUserInfo()
-            .then(currentUser => {
-                setCurrentUser(currentUser)
-            })
-            .catch(err => {
-                console.log("Server returned this error:", err)
-            })
-    }, []);
+
 
     useEffect(() => {
         api.getInitialCards()
-            .then(custCardData => {
-                setCards(custCardData)
+            .then(serverCards => {
+                setCards(serverCards.data);
             })
             .catch(err => {
                 console.log(`Server returned this error: ${err.status}`)
             })
     }, []);
+
 
     function openEditProfilePopup() {
         setIsEditProfilePopupOpen(true);
@@ -119,22 +117,20 @@ function App() {
 
     useEffect(() => {
         const closeByEscape = (e) => {
-          if (e.key === 'Escape') {
-            closeAllPopups();
-          }
+            if (e.key === 'Escape') {
+                closeAllPopups();
+            }
         }
-  
         document.addEventListener('keydown', closeByEscape)
-        
         return () => document.removeEventListener('keydown', closeByEscape)
     }, [])
-  
+
 
     function handleUpdateUser(userData) {
         setIsSaving(true)
         api.editUserInfo(userData)
             .then(newUserData => {
-                setCurrentUser(newUserData);
+                setCurrentUser(newUserData.data);
                 closeAllPopups();
             })
             .catch(err => {
@@ -147,7 +143,7 @@ function App() {
         setIsSaving(true)
         api.uploadUserAvatar(link)
             .then(res => {
-                setCurrentUser(res);
+                setCurrentUser(res.data);
                 closeAllPopups();
             })
             .catch(err => {
@@ -160,7 +156,7 @@ function App() {
         setIsSaving(true)
         api.postNewCard(placeInfo)
             .then(res => {
-                setCards([res, ...cards]);
+                setCards([res.data, ...cards]);
                 closeAllPopups();
             })
             .catch(err => {
@@ -175,10 +171,11 @@ function App() {
     }
 
     function handleCardLike(card) {
-        const isLiked = card.likes.some(i => i._id === currentUser._id);
+        const userId = localStorage.getItem('currentUserId')
+        const isLiked = card.likes.some(i => i === userId);
         api.changeLikeCardStatus(card._id, !isLiked)
             .then(newCard => {
-                setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+                setCards((state) => state.map((c) => c._id === card._id ? newCard.data : c));
             })
             .catch(err => {
                 console.log("Server returned this error:", err)

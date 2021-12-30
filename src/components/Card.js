@@ -5,10 +5,10 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext'
 function Card(props) {
     const currentUser = React.useContext(CurrentUserContext)
     const isOwn = props.ownerId === currentUser._id;
-    const isLiked = props.likes.some(i => i._id === currentUser._id);
+    const isLiked = props.likes.some(i => i === currentUser._id);
 
     function handleCardClick() {
-        props.onCardClick(props.cardData)
+        props.onCardClick(props.cardData);
     }
     function handleLikeClick() {
         props.onCardLike(props.cardData);

@@ -1,5 +1,5 @@
 import { createFetchTemplate } from './api';
-const BASE_URL = 'https://register.nomoreparties.co';
+const BASE_URL = 'http://localhost:3000';
 
 export const register = (email, password) => {
     return createFetchTemplate(`${BASE_URL}/signup`, {
